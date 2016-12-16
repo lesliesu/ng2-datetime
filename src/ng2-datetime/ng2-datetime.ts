@@ -161,7 +161,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
                     }
 
                     this.date = newDate;
-                    this.timeInputClasses = null;
+                    this.dateInputClasses = null;
                     this.dateChange.emit(newDate);
                 });
         } else if (this.datepickerOptions === false) {
@@ -193,7 +193,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
 
                     this.date.setHours(hours);
                     this.date.setMinutes(e.time.minutes);
-                    this.dateInputClasses = null;
+                    this.timeInputClasses = null;
                     this.dateChange.emit(this.date);
                 });
         } else if (this.timepickerOptions === false) {
