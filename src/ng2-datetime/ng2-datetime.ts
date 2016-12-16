@@ -33,7 +33,8 @@ import { TimepickerEvent } from './timepicker-event-interface';
         </div>
         <button *ngIf="hasClearButton" type="button" (click)="clearModels()">Clear</button>
     </div>
-   `
+   `,
+   styles: ['.invalidInput { border: solid 1.5px red; }']
 })
 
 export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestroy, OnChanges {
@@ -160,6 +161,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
                     }
 
                     this.date = newDate;
+                    this.timeInputClasses = null;
                     this.dateChange.emit(newDate);
                 });
         } else if (this.datepickerOptions === false) {
@@ -191,6 +193,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
 
                     this.date.setHours(hours);
                     this.date.setMinutes(e.time.minutes);
+                    this.dateInputClasses = null;
                     this.dateChange.emit(this.date);
                 });
         } else if (this.timepickerOptions === false) {
