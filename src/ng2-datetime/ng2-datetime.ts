@@ -11,23 +11,25 @@ import { TimepickerEvent } from './timepicker-event-interface';
     <div class="form-inline">
         <div id="{{idDatePicker}}" class="input-group date">
             <input type="text" class="form-control"
-                   [attr.readonly]="readonly"
-                   [attr.required]="required"
+                   [attr.readonly]="readonly ? true : null"
+                   [attr.required]="required ? true : null"
+                   [ngClass]="dateInputClasses"
                    [attr.placeholder]="datepickerOptions.placeholder || 'Choose date'"
                    [(ngModel)]="dateModel"
                    (keyup)="checkEmptyValue($event)"/>
             <div class="input-group-addon">
-                <span [ngClass]="datepickerOptions.icon || 'glyphicon glyphicon-th'"></span>
+                <span [ngClass]="datepickerOptions.icon || 'fa fa-calendar'"></span>
             </div>
         </div>
         <div class="input-group bootstrap-timepicker timepicker">
             <input id="{{idTimePicker}}" type="text" class="form-control input-small" 
-                   [attr.readonly]="readonly"
-                   [attr.required]="required"
+                   [attr.readonly]="readonly ? true : null"
+                   [attr.required]="required ? true : null"
+                   [ngClass]="timeInputClasses"
                    [attr.placeholder]="timepickerOptions.placeholder || 'Set time'"
                    [(ngModel)]="timeModel"
                    (keyup)="checkEmptyValue($event)">
-            <span class="input-group-addon"><i [ngClass]="timepickerOptions.icon || 'glyphicon glyphicon-time'"></i></span>
+            <span class="input-group-addon"><i [ngClass]="timepickerOptions.icon || 'fa fa-clock-o'"></i></span>
         </div>
         <button *ngIf="hasClearButton" type="button" (click)="clearModels()">Clear</button>
     </div>
@@ -41,6 +43,8 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
     @Input('hasClearButton') hasClearButton: boolean = false;
     @Input() readonly: boolean = null;
     @Input() required: boolean = null;
+    @Input() timeInputClasses: Object = {};
+    @Input() dateInputClasses: Object = {};
 
     date: Date; // ngModel
     dateModel: string;
