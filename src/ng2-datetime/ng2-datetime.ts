@@ -17,7 +17,7 @@ import { TimepickerEvent } from './timepicker-event-interface';
                    [attr.placeholder]="datepickerOptions.placeholder || 'Choose date'"
                    [(ngModel)]="dateModel"
                    (keyup)="checkEmptyValue($event)"/>
-            <div class="input-group-addon">
+            <div class="input-group-addon" [class.disabled]="readonly">
                 <span [ngClass]="datepickerOptions.icon || 'fa fa-calendar'"></span>
             </div>
         </div>
@@ -29,7 +29,9 @@ import { TimepickerEvent } from './timepicker-event-interface';
                    [attr.placeholder]="timepickerOptions.placeholder || 'Set time'"
                    [(ngModel)]="timeModel"
                    (keyup)="checkEmptyValue($event)">
-            <span class="input-group-addon"><i [ngClass]="timepickerOptions.icon || 'fa fa-clock-o'"></i></span>
+            <span class="input-group-addon" [class.disabled]="readonly">
+                <i [ngClass]="timepickerOptions.icon || 'fa fa-clock-o'"></i>
+            </span>
         </div>
         <button *ngIf="hasClearButton" type="button" (click)="clearModels()">Clear</button>
     </div>
